@@ -1,0 +1,74 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+
+    <header>
+      <h2>AngularJS Examples: A Scintillating Introduction</h2>
+    </header>
+
+    <!--Example 1 -->
+    <section class="example-holder">
+      <h3>Example 1: Binding input data to a model</h3>
+      <p> 
+        When people talk about AngularJS, one of the first things they're going to mention is two-way data binding. This sounds pretty fancy-and it can get complicated-but let's start simple. Elements on the page are bound to models. The elements are added to a watch list. This watch list then gets stepped through. When something about the element changes, when the element's state is "dirty," the associated values will be updated.
+      </p>
+      <p>
+        Here, we've got an input tag and a paragraph tag. When our input field changes, Angular will be able to tell, and then it can update our p tag. All that we need to do to have the content of our paragraph reflect whatever is in the input field is add one attribute to our input tag and add in some templating syntax to our p tag.
+      </p>
+      <p>
+        We're going to use what's given to us with the ng module: the ngModel directive.
+      </p>
+      <p>
+        We have <code>&lt;input ng-model=&quotexample1&quot&gt;</code> and <code ng-non-bindable>&lt;p&gt;{{ example1 }}&lt;/p&gt;</code>.
+      </p>
+      <label for="example1-input">Example Input:</label>
+      <input id="example1-input" placeholder="Example Input" ng-model="example1" />
+      <div class="boxed-dashed">
+        <p>{{ example1 }}</p>
+      </div>
+    </section>
+
+    <!--Example 2 -->
+    <section class="example-holder">
+      <h3>Example 2: ngClick and ngInit</h3>
+      <p>
+        What else can we do?
+      </p>
+      <p>
+        Here we're going to use the ngClick directive. Each button has an <code>ng-click</code> attribute, referring to a variable <code>count</code>. So for the first button, <code ng-non-bindable>&lt;button&gt; ng-click="count = count + 1" &lt;/button&gt;</code>.
+      </p>
+      <p>
+        For the purposes of this example, we're also using ngInit to initialize the count variable to 0. Note that this is not the appropriate use, and is just here for simplicity's sake. From the docs: "The only appropriate use of ngInit is for aliasing special properties of ngRepeat...you should use controllers rather than ngInit to initialize values on a scope."
+      </p>
+      <button ng-click="count = count+1" ng-init="count = 0">I'm a counter. Click me!</button>
+      <button ng-click="count = 0">Reset the count!</button>
+      <div class="boxed-dashed">
+        <p>Counter: {{ count }}</p>
+      </div>
+    </section>
+
+    <section class="example-holder">
+      <h3>Example 3: Scope</h3>
+      <p>
+        Pretty cool so far, right? This is all one HTML page--it's just loading AngularJS, one stylesheet, and a font. And yet, we've got dynamic content in only a few hundred lines of HTML. YAY.
+      </p>
+      <p>
+        But waaaaiit. We've been referring to variables called "example1" and "count." Have we been polluting our namespace?
+      </p>
+      <form name="appForm">
+        <button name="appButton">Click me!</button>
+      </form>
+      <div class="boxed-dashed">
+        <p ng-show="appForm.appButton.$dirty">
+          Our counter ({{ count }}) variable and our example1 ({{ example1 }}) variable are available over here too!
+        </p>
+      </div>
+    </section>
+
+  </body>
+</html>
