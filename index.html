@@ -60,11 +60,9 @@
       <p>
         But waaaaiit. We've been referring to variables called "example1" and "count." Have we been polluting our namespace?
       </p>
-      <form name="appForm">
-        <button name="appButton">Click me!</button>
-      </form>
+      <button ng-click="showHidden=!showHidden">Click me!</button>
       <div class="boxed-dashed">
-        <p ng-show="appForm.appButton.$dirty">
+        <p ng-show="showHidden">
           Our counter ({{ count }}) variable and our example1 ({{ example1 }}) variable are available over here too!
         </p>
       </div>
