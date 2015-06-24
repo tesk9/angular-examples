@@ -1,0 +1,248 @@
+<!doctype html>
+<html ng-app="exampleApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css"></link> 
+  </head>
+  <body>
+
+    <header>
+      <h2>AngularJS Examples: A Scintillating Introduction</h2>
+      <h3>by Tessa Kelly</h3>
+    </header>
+
+    <section class="non-boxed">
+      <p>
+        This is an introduction to a few things in AngularJS. I've included some relevant code, but I encourage you to check out the source as well. Get at me with questions, pull requests, and whatever else you got for me.
+      </p>
+    </section>
+
+    <!--Example 1 -->
+    <section class="example-holder">
+      <h3 ng-click="toggle1 = !toggle1">Example 1: Binding input data to a model</h3>
+      <div ng-class="{'collapse': !toggle1}" class="container-collapsible">
+        <p> 
+          When people talk about AngularJS, one of the first things they're going to mention is two-way data binding. This sounds pretty fancy-and it can get complicated-but let's start simple. Elements on the page are bound to models. The elements are added to a watch list. This watch list then gets stepped through. When something about the element changes, when the element's state is "dirty," the associated values will be updated.
+        </p>
+        <p>
+          Here, we've got an input tag and a paragraph tag. When our input field changes, Angular will be able to tell, and then it can update our p tag. All that we need to do to have the content of our paragraph reflect whatever is in the input field is add one attribute to our input tag and add in some templating syntax to our p tag.
+        </p>
+        <p>
+          We're going to use what's given to us with the ng module: the ngModel directive.
+        </p>
+        <p>
+          We have <code>&lt;input ng-model=&quotexample1&quot&gt;</code> and <code ng-non-bindable>&lt;p&gt;{{ example1 }}&lt;/p&gt;</code>.
+        </p>
+
+        <label for="example1-input">Example Input:</label>
+        <input id="example1-input" placeholder="Example Input" ng-model="example1" />
+
+        <div class="boxed-dashed">
+          <p>{{ example1 }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!--Example 2 -->
+    <section class="example-holder">
+      <h3 ng-click="toggle2 = !toggle2">Example 2: ngClick and ngInit</h3>
+      <div ng-class="{'collapse': !toggle2}" class="container-collapsible">
+        <p>
+          What else can we do?
+        </p>
+        <p>
+          Here we're going to use the ngClick directive. Each button has an <code>ng-click</code> attribute, referring to a variable <code>count</code>. So for the first button, <code ng-non-bindable>&lt;button&gt; ng-click="count = count + 1" &lt;/button&gt;</code>.
+        </p>
+        <p>
+          For the purposes of this example, we're also using ngInit to initialize the count variable to 0. Note that this is not the appropriate use, and is just here for simplicity's sake. From the docs: "The only appropriate use of ngInit is for aliasing special properties of ngRepeat...you should use controllers rather than ngInit to initialize values on a scope."
+        </p>
+
+        <button ng-click="count = count+1" ng-init="count = 0">I'm a counter. Click me!</button>
+        <button ng-click="count = 0">Reset the count!</button>
+
+        <div class="boxed-dashed">
+          <p>Counter: {{ count }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example 3 -->
+    <section class="example-holder">
+      <h3 ng-click="toggle3 = !toggle3">Example 3: Scope</h3>
+      <div ng-class="{'collapse': !toggle3}" class="container-collapsible">
+        <p>
+          Pretty cool so far, right? This is all one HTML page--it's just loading AngularJS, one stylesheet, and a font. And yet, we've got dynamic content in only a few hundred lines of HTML. YAY.
+        </p>
+        <p>
+          But waaaaiit. We've been referring to variables called "example1" and "count." Have we been polluting our namespace?
+        </p>
+
+        <button ng-click="showHidden=!showHidden">Click me!</button>
+
+        <div class="boxed-dashed">
+          <p ng-show="showHidden">
+            Our counter ({{ count }}) variable and our example1 ({{ example1 }}) variable are available over here too!
+          </p>
+        </div>
+
+        <p>
+          But AngularJS can help us with this too! Let's take a look at how AngularJS handles scope.
+        </p>
+      </div>
+    </section>
+
+    <!-- Example 4 -->
+    <section class="example-holder">
+      <h3 ng-click="toggle4 = !toggle4">Example 4: Creating Local Scope</h3>
+      <div ng-class="{'collapse': !toggle4}" class="container-collapsible">
+
+        <p>
+          To create a local scope, we create a controller. Our local scope will inherit from the rootscope, but we won't be able to access the values in our local scope from outside the element to which the controller is associated and its children.
+        </p>
+        <p>
+          Exaaammplllleeee! Here is the code for our module and controller. Note that we already have <code ng-non-bindable>&lt;html ng-app="examleApp"&gt;</code>.
+        </p>
+
+        <code>
+          <pre>
+angular.module("exampleApp", [])<br>
+  .controller("firstBox", ["$scope", function($scope) {<br>
+    $scope.boxOneValue = "I'm the value in box one";<br>
+  }]);
+          </pre>
+        </code>
+
+        <p>
+          We instantiate our Angular module "exampleApp." Using method chaining, we create a controller called "firstBox." The second argument to our controller method is an array, the last element of which is a function. The parameters of this function are the dependencies of our controller. Notice that our array also contains a string "$scope." This is the best practice way of doing dependency injection in AngularJS, since other patterns will fail after minification. <code>$scope</code> gives us access to the variables in our HTML.
+        </p>
+
+        <script type="text/javascript">
+          var exampleApp = angular.module("exampleApp", ["ui.router"])
+            .controller("firstBox", ["$scope", function($scope) {
+              $scope.boxOneValue = "I'm the value in box one";
+            }]);
+        </script>
+
+        <div class-"boxed-dashed">
+        
+          <p>
+            This box has <code>ng-controller="firstBox"</code>.
+          </p>
+
+          <div class="boxed-dashed" ng-controller="firstBox">
+            <label for="boxOneValue">boxOneValue: </label>
+            <input id="boxOneValue" ng-model="boxOneValue">
+            <p>
+              $scope.boxOneValue: {{ boxOneValue }}
+            </p>
+          </div>
+
+          <p>
+            This box has no controller. Note that boxOneValue does not update in this box. However, we can still update everything we defined on the rootscope.
+          </p>
+
+          <div class="boxed-dashed">
+            <p>
+              $scope.boxOneValue: {{ boxOneValue }}
+            </p>
+            <p>
+              $scope.example1: {{ example1 }}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Example 5 -->
+    <section class="example-holder">
+      <script src="router.js"></script>
+      <h3 ng-click="toggle5 = !toggle5">Example 5: Routing</h3>
+      <div ng-class="{'collapse': !toggle5}" class="container-collapsible">
+        <p>  
+          So far we've seen some models, a controller, and we've touched on the digest cycle. One of Angular's main uses is for crafting Single Page Apps, and if we want multiple routes for our app we're going to want to do some client-side routing--we want to be able to link to different "pages" (states) of our SPA.
+        </p>
+        <p>
+          We've got a couple of options for our router. We can use ngRoute or uiRouter. For either, we'll need to add it as dependencies for our app, which means injecting it into our module. Here is how we would dependency inject the uiRouter into our app:
+        </p>
+
+        <code>
+          <pre>
+  var exampleApp = angular.module("exampleApp", ["uiRouter"])
+          </pre>
+        </code>
+
+        <p>
+          Then we need to configure the routes.
+        </p>
+
+        <code>
+          <pre>
+exampleApp.config(["$stateProvider", function($stateProvider) {
+  $stateProvider
+    .state("state1", {
+      url: "/state1",
+      templateURL: "partials/state1.html"
+    })
+    .state("state2", {
+      url: "/state2",
+      templateURL: "partials/state2.html"
+    })
+}]);
+          </pre>
+        </code>
+
+        <p>
+          Cool! So now we've got states. We also need to insert a tag with <code>ui-view</code> on it, so that our templates have a place to go. This attribute is on a div in the box with the dashed border around it below. 
+        </p>
+
+        <p>
+          We can navigate between views from the url, but it's nice to have links. For uiRouter, we create a link with <code>ui-sref="state1"</code>. Here are some links:
+          <a ui-sref="state1">State 1</a>
+          <a ui-sref="state2">State 2</a>
+        </p>
+
+        <div class="boxed-dashed">
+          <div ui-view></div>
+        </div>
+      </div>
+    </section>
+
+    <!--Example 6 -->
+    <section class="example-holder">
+      <h3 ng-click="toggle6 = !toggle6">Example 6: Templating is Bananas</h3>
+      <div ng-class="{'collapse': !toggle6}" class="container-collapsible">
+        <h3>Or, Look at the Other Folder</h3>
+        <p>
+          Take a look at the source for this page. Check out the repetitive structure. 
+          What if I asked you to add a class to every paragraph element? Ugh, right? And there are
+          only a handful of examples on the page...
+        </p>
+        <p>
+          Angular gives us ng-Repeat, which we could use to refactor this page. Instead, we're going to make something else. Check out section-two.
+        </p>
+    </section>
+
+  </body>
+</html>
+
+<!-- CHILD TEMPLATE: STATE 1 -->
+<script type="text/ng-template" id="partials/state1.html">
+  <h2>State 1</h2>
+  <svg width="100%" height="120px">
+    <rect x="10" y="10" width="50" height="75" fill="purple"></rect>
+    <circle cx="125" cy="5" r="70" fill="green"></circle>
+  </svg>
+</script>
+
+<!-- CHILD TEMPLATE: STATE 2 -->
+<script type="text/ng-template" id="partials/state2.html">
+  <h2>State 2</h2>
+  <svg width="100%" height="120px">
+    <rect x="700" y="70" width="250" height="275" fill="yellow"></rect>
+    <circle cx="20" cy="200" r="170" fill="pink"></circle>
+    <ellipse cx="500" cy="70" rx="100" ry="55" fill="purple" stroke="green" stroke-width="1"></ellipse>
+  </svg>
+</script>

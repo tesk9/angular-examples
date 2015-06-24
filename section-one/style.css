@@ -1,0 +1,36 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.example-holder {
+  border: 2px solid black;
+  box-sizing: border-box;
+  margin: 10px 5px 10px 5px;
+  padding: 5px 10% 5px 10%;
+}
+
+.boxed-dashed {
+  border: 1px dashed gray;
+  box-sizing: border-box;
+  margin: 20px 2px 20px 2px;
+  min-height: 80px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.non-boxed {
+  text-align: center;
+  margin: 10px 5px 10px 5px;
+  padding: 5px 10% 5px 10%;
+}
+
+h1, 
+h2, 
+h3 {
+  text-align: center;
+}
+
+.collapse {
+  display: none;
+  height: 0;
+}
