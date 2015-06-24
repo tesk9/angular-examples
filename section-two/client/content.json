@@ -1,0 +1,57 @@
+{
+  "intro": "Welcome to section-two! Now our data is being loaded from a json-file. We're not using a database for simplicity's sake.",
+  "examples": [
+    {
+      "title": "Example 1: ngRepeat",
+      "paragraphs": [
+        "Suppose we've got a couple of sections with very similar structures. This is a perfect use-case for ngRepeat.",
+        "Maybe, for instance, we're displaying photos, and we want info about the subjects of the photos to show up.",
+        "First, let's take a look at the JSON that we're working with."
+      ],
+      "images": [
+        {
+          "src": "http://www.eonline.com/eol_images/Entire_Site/201438/rs_560x415-140408154504-1024.baby-elephant-grass.ls.4814.jpg",
+          "title": "Elephant",
+          "desc": "This is an elephant. Elephants are cool."
+        },
+        {
+          "src": "https://placehold.it/200X200",
+          "title": "Image Not Found",
+          "desc": "Oh noes! No image here."
+        },
+        {
+          "src": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Manatee_at_Sea_World_Orlando_Mar_10.JPG",
+          "title": "Manatee",
+          "desc": "MANATEEEEEEEEE"
+        },
+        {
+          "src": "http://gifts.worldwildlife.org/gift-center/Images/large-species-photo/large-River-Otter-photo.jpg",
+          "desc": "Here I've left off the title attribute. Note that this is not a disaster. It makes things look a bit inconsistent, but it does not break anything."
+        }
+      ]
+    },
+    {
+      "title": "Example 2: Angular is Nice to Us",
+      "paragraphs": [
+        "Yay for ngRepeat! Guess what? We're not just using ngRepeat for the photos--we're actually using it for these examples as well. Note how forgiving it is--this example doesn't have an images property at all, and yet there's no problem in rendering it.",
+        "The next example demonstrates the same concept, but with images instead of paragraphs."
+      ]
+    },
+    {
+      "title": "Example 3: Just Pictures",
+      "images": [
+        {
+          "title": "Cat Ba Langur",
+          "src": "http://www.princehotelhanoi.com/images/cat_ba_langur.jpg"
+        }
+      ]
+    },
+    {
+      "title": "Example 4: So What's that Input Box up there for Anyway?",
+      "paragraphs": [
+        "Filtering!",
+        "In AngularJS, it's very easy to sort through displayed data. Wherever you have your ng-repeat='example in examples' statement, for some examples array, add a pipe character with your filter requirements."
+      ]
+    }
+  ]
+}

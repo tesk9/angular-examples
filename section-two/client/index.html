@@ -1,0 +1,42 @@
+<!doctype html>
+<html ng-app="exampleApp">
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="/public/javascripts/main.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/public/style.css"></link> 
+  </head>
+  <body>
+    <header>
+      <h2>AngularJS Examples: A Continuation</h2>
+      <h3>still by Tessa Kelly</h3>
+    </header>
+
+    <section ng-controller="ExampleController">
+      <!-- INTRO -->
+      <section class="non-boxed">
+        <p> {{ content.intro }} </p>
+        <label for="filterByTerm">Filter Examples:</label>
+        <input type="text" id="filterByTerm" ng-model="q" placeholder="search term">
+      </section>
+
+      <!--EXAMPLES -->
+      <section class="example-holder" ng-repeat="example in content.examples | filter:q as results">
+        <h3 ng-click="toggle = !toggle">{{ example.title }}</h3>
+        <div ng-class="{'collapse': !toggle}" class="container-collapsible">
+          <p ng-repeat="paragraph in example.paragraphs">{{ paragraph }}</p>
+          <div class="box-tmbnail" ng-repeat="image in example.images">
+            <figure>
+              <a href="{{ image.src }}"><img src="{{ image.src }}" alt="image.desc" class="tmbnail"></a>
+              <figcaption>{{ image.title }}</figcaption>
+            </figure>
+            <h4><strong>{{ image.title }}</strong></h4>
+            <p>{{ image.desc }}</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+  </body>
+</html>
