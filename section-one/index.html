@@ -97,12 +97,11 @@
     <section class="example-holder">
       <h3 ng-click="toggle4 = !toggle4">Example 4: Creating Local Scope</h3>
       <div ng-class="{'collapse': !toggle4}" class="container-collapsible">
-
         <p>
-          To create a local scope, we create a controller. Our local scope will inherit from the rootscope, but we won't be able to access the values in our local scope from outside the element to which the controller is associated and its children.
+          To create a local scope, we can create a controller or a directive. Directives by default do not create a new scope, but setting <code>scope: true</code> will create a new scope. (ngController, which is what we use to create/associate a controller, <em>is</em> a directive.) Our local scope will inherit from its parent scope, but we won't be able to access the values in our local scope from outside the element to which the controller is associated and its children.
         </p>
         <p>
-          Exaaammplllleeee! Here is the code for our module and controller. Note that we already have <code ng-non-bindable>&lt;html ng-app="examleApp"&gt;</code>.
+          Here is the code for our module and controller. Note that we already have <code ng-non-bindable>&lt;html ng-app="exampleApp"&gt;</code>.
         </p>
 
         <code>
@@ -140,7 +139,7 @@ angular.module("exampleApp", [])<br>
           </div>
 
           <p>
-            This box has no controller. Note that boxOneValue does not update in this box. However, we can still update everything we defined on the rootscope.
+            This box has no controller. Note that boxOneValue does not update in this box.
           </p>
 
           <div class="boxed-dashed">
@@ -152,6 +151,7 @@ angular.module("exampleApp", [])<br>
             </p>
           </div>
 
+          <p>For more on scope, visit <a href="https://github.com/angular/angular.js/wiki/Understanding-Scopes">the wiki<a>.</p>
         </div>
       </div>
     </section>
